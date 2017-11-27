@@ -310,7 +310,6 @@ document.querySelector('#gridSize').addEventListener('change', function() {
 });
 
 document.querySelector('#p1Colour').addEventListener('change', function(e) {
-	console.log(e);
 	changeSquareColour(e, 1);
 });
 
