@@ -165,8 +165,8 @@ function checkForSquare(link) {
 		if (link.start.gy !== dotCount - 1) {
 			const lowerLeft = linksArray.find(l => l.start.gy === link.start.gy && l.end.gy === link.start.gy + 1 && l.start.gx === link.start.gx);
 			const lowerBottom = linksArray.find(l => l.start.gx === link.start.gx && l.end.gx === link.end.gx && l.start.gy === link.start.gy + 1);
-			const lowerRight = linksArray.find(l => l.start.gy === link.end.gy && l.end.gy === link.end.gy + 1 && l.start.gx === l.start.gx + 1);
-
+			const lowerRight = linksArray.find(l => l.start.gy === link.end.gy && l.end.gy === link.end.gy + 1 && l.start.gx === link.end.gx);
+			console.log(lowerLeft, lowerBottom, lowerRight);
 			if (lowerLeft && lowerBottom && lowerRight) {
 				squaresArray.push(new Square(lowerLeft.start.x, lowerLeft.start.y, DOT_SPACING, DOT_SPACING, colours[turn]));
 			}
