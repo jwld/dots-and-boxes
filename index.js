@@ -163,9 +163,9 @@ function checkForSquare(link) {
 
 		// check for square below
 		if (link.start.gy !== dotCount - 1) {
-			const lowerLeft = linksArray.find(l => l.start.gy === link.start.gy && l.end.gy === link.start.gy + 1 && l.start.gx === link.start.gx );
-			const lowerBottom = linksArray.find(l => l.start.gx === link.start.gx && l.end.gx === link.end.gx && l.start.gy === link.start.gy + 1 );
-			const lowerRight = linksArray.find(l => l.start.gy === link.end.gy && l.end.gy === link.end.gy + 1 && l.start.gx === l.start.gx );
+			const lowerLeft = linksArray.find(l => l.start.gy === link.start.gy && l.end.gy === link.start.gy + 1 && l.start.gx === link.start.gx);
+			const lowerBottom = linksArray.find(l => l.start.gx === link.start.gx && l.end.gx === link.end.gx && l.start.gy === link.start.gy + 1);
+			const lowerRight = linksArray.find(l => l.start.gy === link.end.gy && l.end.gy === link.end.gy + 1 && l.start.gx === l.start.gx + 1);
 
 			if (lowerLeft && lowerBottom && lowerRight) {
 				squaresArray.push(new Square(lowerLeft.start.x, lowerLeft.start.y, DOT_SPACING, DOT_SPACING, colours[turn]));
@@ -281,7 +281,7 @@ function animate() {
 	if (origin) {
 		renderActiveLink();
 	}
-	
+
 	for (var i = 0; i < dotArray.length; i++) {
     dotArray[i].update();
   }
