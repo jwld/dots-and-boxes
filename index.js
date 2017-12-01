@@ -122,6 +122,20 @@ function renderActiveLink() {
 }
 
 function checkValidMove(target) {
+	// check this move hasn't already been made
+	if (linksArray.find(link =>
+		(origin.gx === link.start.gx && origin.gy === link.start.gy
+		&& target.gx === link.end.gx && target.gy === link.end.gy) ||
+		(origin.gx === link.end.gx && origin.gy === link.end.gy
+		&& target.gx === link.start.gx && target.gy === link.start.gy)
+	)) return false;
+
+	console.log(linksArray.find(link =>
+		origin.gx === link.start.gx && origin.gy === link.start.gy
+		&& target.gx === link.end.gx && target.gy === link.end.gy
+	));
+
+	// only allow moves to adjacent, non-diagonal points
 	if (((origin.gx === target.gx - 1 || origin.gx === target.gx + 1) && origin.gy === target.gy) || // x-move
 		  ((origin.gy === target.gy - 1 || origin.gy === target.gy + 1) && origin.gx === target.gx)) { // y-move
 		return true;
@@ -166,7 +180,7 @@ function checkForSquare(link) {
 			const lowerLeft = linksArray.find(l => l.start.gy === link.start.gy && l.end.gy === link.start.gy + 1 && l.start.gx === link.start.gx);
 			const lowerBottom = linksArray.find(l => l.start.gx === link.start.gx && l.end.gx === link.end.gx && l.start.gy === link.start.gy + 1);
 			const lowerRight = linksArray.find(l => l.start.gy === link.end.gy && l.end.gy === link.end.gy + 1 && l.start.gx === link.end.gx);
-			console.log(lowerLeft, lowerBottom, lowerRight);
+
 			if (lowerLeft && lowerBottom && lowerRight) {
 				squaresArray.push(new Square(lowerLeft.start.x, lowerLeft.start.y, DOT_SPACING, DOT_SPACING, colours[turn]));
 			}
@@ -310,7 +324,6 @@ document.querySelector('#gridSize').addEventListener('change', function() {
 });
 
 document.querySelector('#p1Colour').addEventListener('change', function(e) {
-	console.log(e);
 	changeSquareColour(e, 1);
 });
 
